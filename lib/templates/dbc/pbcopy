@@ -1,0 +1,38 @@
+<% if (type === 'psql') { %>
+const <%= camelCase %>PgConfig = {
+    pgUser:             '',
+    pgDatabase:         '',
+    pgPassword:         '',
+    pgHost:             'localhost',
+    pgPort:             5432,
+    pgMaxPoolClients:   10,
+    pgTimeoutMilli:     5000
+};
+
+export default <%= camelCase %>PgConfig ;
+<% } else if (type === 'mssql') { %>
+const <%= camelCase %>MsConfig = {
+    msHost: '',
+    msDb:   '',
+    msUser: '',
+    msPassword: '',
+    msPort: 1433,
+    msTimeoutMilli: 20000,
+    msMaxPoolClients: 10,
+    msPoolTimeoutMilli: 30000
+};
+
+export default <%= camelCase %>MsConfig;
+<% } else if (type === 'mysql') { %>
+
+
+<% } else if (type === 'mongo') { %>
+const mgConfig = {
+  mgHost: 'localhost',
+  mgPort: 27017,
+  mgDb:   ''
+};
+
+const <%= camelCase %>MgConfig = `mongodb://${mgConfig.mgHost}:${mgConfig.mgPort}/${mgConfig.mgDb}`;
+export default <%= camelCase %>MgConfig;
+<% } %>
