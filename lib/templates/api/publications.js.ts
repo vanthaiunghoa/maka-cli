@@ -5,19 +5,6 @@ import { <%= name %> } from '../<%= fileName %>.ts';
  * Collection publications to the client.  Publications must
  * return a cursor object.
  *
- * *Disabled by default. Uncomment return for each publication to enable.*
- *
- * Example:
- * ```
- *   Meteor.publish('<%= fileName %>.public', function <%= camelCase %>Public() {
- *       let cursor = <%= name %>.find({
- *           userId: { $exists: false },
- *       }, {
- *           fields: <%= name %>.publicFields
- *       });
- *       return cursor;
- *   });
- * ```
  * @memberof Server.<%= name %>
  * @member Publications
  */

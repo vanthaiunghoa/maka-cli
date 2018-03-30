@@ -22,19 +22,53 @@ Maka
 ### Quick Note!
 Follow me on [Medium](https://medium.com/@matthewjmcampbell) for me building all the things with maka-cli!
 
-### Update 2.11.0
-New AND improved -- The maka database connection generator!  Ok, so how can it be new AND improved?
-Always wanted to connect to that cool postgresql geoserver?  Had the longing to hook-up with that Microsoft SQL instance?  Well now you can!
+### Update 2.11.12
+I've made some more effort to spruce up the back-end scaffolding.  As such, I've updated the collections in particular which were
+giving me some trouble.
 
-```sh
-$ maka g:dbc sweet-geoserver --type=pgsql
+Of note, is the constructor to the Mongo.Collection:
+
+```js
+constructor() {
+    super('CollectionName');
+
+    this.publicFields = {};
+    this.privateFields = {};
+    this.deny({
+      insert() { return true; },
+      update() { return true; },
+      remove() { return true; },
+    });
+
+    this.schema = {};
+  }
 ```
 
-This will not only scaffold out your new database connection into /imports/startup/server/dbc/ but it'll also make sure you have the proper npm packages.
+Let me walk you through it -- first I've declared the collection name in the constructor in order to properly bind it.
+Second, I move up the public and private fields, which are helpers to the RPC methods, so they are cleaner and clearer.
+Next, I've also moved up the deny method into the constructor so it's cleaner.
+Last, and certainly not least, I've added a way to define your schema.
 
-Currently this only supports postgresql (pgsql) and Microsoft SQL (mssql).  Mysql and Mongo are en route.
+...
+
+"SAY WHAAAAAAAT?!" You exclaim? Yes, I've just made a simple schema object and it is checked using Meteor's 'check' package.
+
+For example, in the insert statement, you'll see that if you have defined a schema it'll check the incoming document against
+the schema for consistency.  Read more about Meteor's [check](https://docs.meteor.com/api/check.html) package.
+
+```js
+  insert(doc, callback) {
+    if (this._hasSchema()) {
+      check(doc, this.schema);
+    }
+
+    const result = super.insert(doc, callback);
+    return result;
+  }
+```
 
 Enjoy!
+
 
 
 ## Installation

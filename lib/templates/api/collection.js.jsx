@@ -1,13 +1,25 @@
 import { Mongo } from 'meteor/mongo';
+import { check } from 'meteor/check';
+
 /**
- * Extension of the Mongo.Collection in order to expose
- * useful class method hooks to modify or manipulate data
- * before invoking the super class's methods.
- *
  * @memberof Server.<%= name %>
  * @extends Mongo.Collection
  */
 class <%= name %>Collection extends Mongo.Collection {
+  constructor() {
+    super('<%= name %>');
+
+    this.publicFields = {};
+    this.privateFields = {};
+    this.deny({
+      insert() { return true; },
+      update() { return true; },
+      remove() { return true; },
+    });
+
+    this.schema = {};
+  }
+
   /**
    * @public
    * @param { object } doc The document to inserted.
@@ -15,6 +27,10 @@ class <%= name %>Collection extends Mongo.Collection {
    * @returns { string } The _id of the new doc.
    */
   insert(doc, callback) {
+    if (this._hasSchema()) {
+      check(doc, this.schema);
+    }
+
     const result = super.insert(doc, callback);
     return result;
   }
@@ -26,6 +42,10 @@ class <%= name %>Collection extends Mongo.Collection {
    * @returns { string } The _id of the document updated.
    * */
   update(selector, modifier) {
+    if (this._hasSchema()) {
+      check(modifier.$set, this.schema);
+    }
+    
     const result = super.update(selector, modifier);
     return result;
   }
@@ -39,32 +59,20 @@ class <%= name %>Collection extends Mongo.Collection {
     const result = super.remove(selector);
     return result;
   }
+
+  // Helper method
+  _hasSchema = () => {
+    const { schema } = this;
+    if (schema) {
+      return (Object.keys(schema).length !== 0 
+              && schema.constructor === Object);
+    }
+  }
 }
 
 /**
- * The MongoDB collection object that is exported and made available
- * to the server.  Client access is restricted, and may only access this
- * collection (by default) via server side Meteor Methods.
- * You may modify (not recommended) these permissions on the <%= name %>.deny() line.
  * @memberof Server.<%= name %>
  * @member <%= name %>
  */
-const <%= name %> = new <%= name %>Collection('<%= name %>');
-export default <%= name %>;
-
-/**
- * Set the client side access rights to the Cases collection.
- * Default: Deny all
- */
-<%= name %>.deny({
-  insert() { return true; },
-  update() { return true; },
-  remove() { return true; },
-});
-
-/**
- * Set the default public and private field selectors.
- * @see ./publications.js
- */
-<%= name %>.publicFields = {};
-<%= name %>.privateFields = {};
+const <%= name %> = new <%= name %>Collection();
+export default  <%= name %>;

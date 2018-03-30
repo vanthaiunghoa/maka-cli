@@ -1,3 +1,18 @@
+### Update 2.11.0
+New AND improved -- The maka database connection generator!  Ok, so how can it be new AND improved?
+Always wanted to connect to that cool postgresql geoserver?  Had the longing to hook-up with that Microsoft SQL instance?  Well now you can!
+
+```sh
+$ maka g:dbc sweet-geoserver --type=pgsql
+```
+
+This will not only scaffold out your new database connection into /imports/startup/server/dbc/ but it'll also make sure you have the proper npm packages.
+
+Currently this only supports postgresql (pgsql) and Microsoft SQL (mssql).  Mysql and Mongo are en route.
+
+Enjoy!
+
+
 ### Update 2.10.0
 Drinking Mocha! While I love me some Jasmine, I think it's best to support the officially supported testing driver by Meteor.  Now when you scaffold your application you may define the following flag:
 ```sh
