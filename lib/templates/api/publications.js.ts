@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { <%= name %> } from '../<%= fileName %>.ts';
+import <%= name %> from './<%= fileName %>-collection.ts';
 
 /**
  * Collection publications to the client.  Publications must

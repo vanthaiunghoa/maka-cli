@@ -5,3 +5,5 @@ test/integration/out
 test/dummy
 *.swp
 *.swo
+.idea/
+*.iml

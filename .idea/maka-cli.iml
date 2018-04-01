@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/temp" />
+      <excludeFolder url="file://$MODULE_DIR$/test/integration/fixtures/blaze/app/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/test/integration/fixtures/react-apollo-ssr/app/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/test/integration/fixtures/react-apollo/app/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/test/integration/fixtures/react-material/app/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/test/integration/fixtures/react-ssr/app/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/test/integration/fixtures/react/app/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/test/integration/fixtures/reflux-apollo-ssr/app/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/test/integration/fixtures/reflux-apollo/app/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/test/integration/fixtures/reflux-material/app/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/test/integration/fixtures/reflux-ssr/app/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/test/integration/fixtures/reflux/app/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/test/integration/out/css/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/test/integration/out/html/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/test/integration/out/javascript/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/test/integration/out/react/app/.meteor/local" />
+      <excludeFolder url="file://$MODULE_DIR$/tmp" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

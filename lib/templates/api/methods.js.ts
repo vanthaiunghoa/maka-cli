@@ -3,7 +3,7 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { DDPRateLimiter } from 'meteor/ddp-rate-limiter';
 import { _ } from 'meteor/underscore';
 
-import { <%= name %> } from './<%= fileName %>.ts';
+import <%= name %> from './<%= fileName %>-collection.ts';
 
 /**
  * Using ValidatedMethod (maintained by MDG) is the best
