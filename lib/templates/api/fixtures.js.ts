@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { <%= name %> } from './<%= fileName %>.ts';
+import <%= name %> from './<%= fileName %>-collection.ts';
 
 /**
  * If the <%= name %> collection is empty on server start, and you'd like to

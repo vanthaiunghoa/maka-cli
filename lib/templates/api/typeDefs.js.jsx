@@ -1,7 +1,5 @@
-export const typeDefs =
-  `
-type Query {
-  <%= camelCase %>: String
-}
-
+export const typeDefs = `
+  type Query {
+    <%= camelCase %>: String
+  }
 `;

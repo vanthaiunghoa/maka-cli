@@ -1,4 +1,6 @@
 import { Meteor } from 'meteor/meteor';
+import <%= name %> from './<%= fileName %>-collection.jsx';
+
 /**
  * If the <%= name %> collection is empty on server start, and you'd like to
  * populate it with some data here is a handy spot.
