@@ -9,7 +9,7 @@
  * ```
  * @namespace Server.<%= name %>
  */
-import '../../api<%= optsDir %><%= fileName %>/rpc-methods.tsx';
-import '../../api<%= optsDir %><%= fileName %>/fixtures.tsx';
-import '../../api<%= optsDir %><%= fileName %>/publications.tsx';
-<% if( api !== 'none' ) { %>import '../../api<%= optsDir %><%= fileName %>/rest-api.tsx';<% } %>
+import '../../api<%= optsDir %><%= fileName %>/rpc-methods';
+import '../../api<%= optsDir %><%= fileName %>/fixtures';
+import '../../api<%= optsDir %><%= fileName %>/publications';
+<% if( api !== 'none' ) { %>import '../../api<%= optsDir %><%= fileName %>/rest-api';<% } %>

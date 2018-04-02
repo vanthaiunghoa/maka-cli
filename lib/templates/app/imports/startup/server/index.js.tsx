@@ -15,7 +15,7 @@ if (typeList.length > 0 && resolverList.length > 0) {
 }<% } %>
 <% if (config.engines.ssr === 'true') { %>
 /************* SSR Code ********************/
-import Routes from '../lib/routes.jsx';
+import Routes from '../lib/routes';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { onPageLoad } from 'meteor/server-render';

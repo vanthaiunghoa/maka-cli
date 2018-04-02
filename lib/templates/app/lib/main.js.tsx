@@ -1,1 +1,1 @@
-import '/imports/startup/lib/index.tsx';
+import '/imports/startup/lib/index';

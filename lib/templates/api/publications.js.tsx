@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import <%= name %> from './<%= fileName %>.jsx';
+import <%= name %> from './<%= fileName %>-collection';
 
 /**
  * Collection publications to the client.  Publications must

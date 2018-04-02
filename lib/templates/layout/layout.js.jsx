@@ -22,10 +22,8 @@ class <%= className %>Component extends Component {
     super.componentWillUnmount();<% }%>
   }
 
-  componentDidCatch(error, info) { console.log(error, info); }
-
   render() { return (<div>{ this.props.children }</div>); }
 }
 
 const <%= className %> = <%= className %>Component;
-export { <%= className %>, <%= className %>Component };
+export { <%= className %> };

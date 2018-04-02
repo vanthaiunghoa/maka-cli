@@ -6,8 +6,17 @@ import { withTracker } from 'meteor/react-meteor-data';<% } %><% if(graphql === 
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag'; <% } %>
 <% if (!isStore) { %>
-class <%= className %>Component extends Component {<% } else { %>
-class <%= className %>Component extends Store { <% } %><% if (client === 'reflux' && isStore) { %>
+interface <%= className %>Component {
+  state: any,
+  props: any
+}
+class <%= className %>Component extends Component<<%= className %>Component> {<% } else { %>
+interface <%= className %>Component {
+  state: any,
+  props: any,
+  store: any
+}
+class <%= className %>Component extends Store<<%= className %>Component> { <% } %><% if (client === 'reflux' && isStore) { %>
   constructor() {
     super();
     this.state = {};

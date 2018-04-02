@@ -1,11 +1,17 @@
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 
+interface <%=name%>Collection {
+  publicFields: any,
+  privateFields: any,
+  deny: any,
+  schema: any
+}
 /**
  * @memberof Server.<%= name %>
  * @extends Mongo.Collection
  */
-class <%= name %>Collection extends Mongo.Collection {
+class <%= name %>Collection extends Mongo.Collection<<%=name%>Collection> {
   constructor() {
     super('<%= name %>');
 
@@ -20,19 +26,25 @@ class <%= name %>Collection extends Mongo.Collection {
     this.schema = {};
   }
 
+  find(selector, modifier) {
+    return super.find(selector, modifier);
+  }
+
+  findOne(selector, modifier) {
+    return super.findOne(selector, modifier);
+  }
+
   /**
    * @public
    * @param { object } doc The document to inserted.
    * @param { object } callback The callback from invocation.
    * @returns { string } The _id of the new doc.
    */
-  insert(doc, callback) {
+  insert(doc) {
     if (this._hasSchema()) {
       check(doc, this.schema);
     }
-
-    const result = super.insert(doc, callback);
-    return result;
+    return super.insert(doc);
   }
 
   /**
@@ -45,9 +57,8 @@ class <%= name %>Collection extends Mongo.Collection {
     if (this._hasSchema()) {
       check(modifier.$set, this.schema);
     }
-    
-    const result = super.update(selector, modifier);
-    return result;
+
+    return super.update(selector, modifier);
   }
 
   /**
@@ -56,15 +67,14 @@ class <%= name %>Collection extends Mongo.Collection {
    * @returns { string } The _id of the document being removed.
    */
   remove(selector) {
-    const result = super.remove(selector);
-    return result;
+    return super.remove(selector);
   }
 
   // Helper method
   _hasSchema = () => {
     const { schema } = this;
     if (schema) {
-      return (Object.keys(schema).length !== 0 
+      return (Object.keys(schema).length !== 0
               && schema.constructor === Object);
     }
   }
@@ -76,4 +86,3 @@ class <%= name %>Collection extends Mongo.Collection {
  */
 const <%= name %> = new <%= name %>Collection();
 export default  <%= name %>;
-

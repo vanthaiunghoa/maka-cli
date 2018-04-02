@@ -7,7 +7,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
  * @desc This is the main definition for the react router.
  */
 
-import * as Component from './templates.jsx';
+import * as Component from './templates.tsx';
 
 const Routes = () => (
   <Router history={ browserHistory }>

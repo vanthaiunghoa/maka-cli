@@ -2,7 +2,8 @@
 import React from 'react';
 import { Component } from 'reflux';<% } %>
 
-class <%= className %>Component extends Component {
+interface <%= className %>Component { state: any, props: any }
+class <%= className %>Component extends Component<<%= className %>Component> {
   static propTypes = {}
 
   static defaultProps = {}
@@ -22,10 +23,8 @@ class <%= className %>Component extends Component {
     super.componentWillUnmount();<% }%>
   }
 
-  componentDidCatch(error, info) { console.log(error, info); }
-
   render() { return (<div>{ this.props.children }</div>); }
 }
 
 const <%= className %> = <%= className %>Component;
-export { <%= className %>, <%= className %>Component };
+export { <%= className %> };

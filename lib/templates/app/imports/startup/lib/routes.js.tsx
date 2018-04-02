@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import * as Component from './templates.jsx';
+import * as Component from './templates';
 
 const Routes = (props) => (
     <Router history={ props.history }>

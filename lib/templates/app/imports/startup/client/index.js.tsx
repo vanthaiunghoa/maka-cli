@@ -25,7 +25,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { onPageLoad } from "meteor/server-render";
 import { browserHistory } from 'react-router';
 <% } %>
-<% if (config.engines.ssr === 'true') { %>import Routes from '../lib/routes.jsx';<% } else { %>import Routes from './routes.jsx';<% } %>
+<% if (config.engines.ssr === 'true') { %>import Routes from '../lib/routes';<% } else { %>import Routes from './routes';<% } %>
 
 const App = () => (<% if (config.engines.ssr === 'true') { %>
   <BrowserRouter><% } %><% if (config.engines.graphql === 'apollo') { %>

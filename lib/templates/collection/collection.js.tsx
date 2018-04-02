@@ -3,7 +3,14 @@ import { check } from 'meteor/check';
 
 <% if (where === 'client') { -%>
 export const <%= name %> = new Mongo.Collection(null);
-<% } else { -%>
+<% } else { %>
+interface <%=name%>Collection {
+    publicFields: any,
+    privateFields: any,
+    deny: any,
+    schema: any
+}
+
 class <%= name %>Collection extends Mongo.Collection {
   constructor() {
     super('<%= name %>');
