@@ -22,53 +22,23 @@ Maka
 ### Quick Note!
 Follow me on [Medium](https://medium.com/@matthewjmcampbell) for me building all the things with maka-cli!
 
-### Update 2.11.12
-I've made some more effort to spruce up the back-end scaffolding.  As such, I've updated the collections in particular which were
-giving me some trouble.
+## Update 2.12.0
+In an effort to bump up Meteor and React to industry/bigboy/biggirl level I've implemented a scaffolding for React + TypeScript.
 
-Of note, is the constructor to the Mongo.Collection:
+If you'd like to create a new project with React + TypeScript, issue the following:
 
-```js
-constructor() {
-    super('CollectionName');
-
-    this.publicFields = {};
-    this.privateFields = {};
-    this.deny({
-      insert() { return true; },
-      update() { return true; },
-      remove() { return true; },
-    });
-
-    this.schema = {};
-  }
+```sh
+maka create react-typescript-app --js=tsx
 ```
 
-Let me walk you through it -- first I've declared the collection name in the constructor in order to properly bind it.
-Second, I move up the public and private fields, which are helpers to the RPC methods, so they are cleaner and clearer.
-Next, I've also moved up the deny method into the constructor so it's cleaner.
-Last, and certainly not least, I've added a way to define your schema.
+This will scaffold out all files for TypeScript, install the necessary packages, and also add meteor.d.ts and tsconfig.json files for your
+typing safety.  You may also use any other scaffolding flags as usual.  For example:
 
-...
-
-"SAY WHAAAAAAAT?!" You exclaim? Yes, I've just made a simple schema object and it is checked using Meteor's 'check' package.
-
-For example, in the insert statement, you'll see that if you have defined a schema it'll check the incoming document against
-the schema for consistency.  Read more about Meteor's [check](https://docs.meteor.com/api/check.html) package.
-
-```js
-  insert(doc, callback) {
-    if (this._hasSchema()) {
-      check(doc, this.schema);
-    }
-
-    const result = super.insert(doc, callback);
-    return result;
-  }
+```sh
+maka create react-apollo-typescript-mocha --js=tsx --graphql=apollo --test=mocha
 ```
 
 Enjoy!
-
 
 
 ## Installation
@@ -85,20 +55,20 @@ Windows:
 Install the maka command line tool globally so you can use it from any project directory. On OSX, don't use sudo to install.
 
 ```sh
-$ npm install -g maka-cli
+npm install -g maka-cli
 ```
 
 ## Usage
 Use the `help` command to get a list of the top level commands.
 
 ```
-$ maka help
+maka help
 ```
 
 Use the `g` command to see a list of generators.
 
 ```
-$ maka g
+maka g
 ```
 
 ## Commands
@@ -106,55 +76,55 @@ $ maka g
 ### Migrate from Iron-meteor
 In the app directory:
 ```sh
-$ maka migrate
+maka migrate
 ```
 
 ### Create a Blaze application
 ```sh
-$ maka create my-app --client=blaze
+maka create my-app --client=blaze
 ```
 
 ### Create a React App
 ```
-$ maka create ReactApp
+maka create ReactApp
 ```
 
 ### Create a GraphQL App
 ```
-$ maka create GraphQLApp --graphql=apollo
+maka create GraphQLApp --graphql=apollo
 
-$ maka g:api boats
+maka g:api boats
 ```
 Currently there is a problem with Safari, so use Chrome and go to http://localhost:3000/graphiql to see the server running!
 
 
 ### Run Your Application
 ```sh
-$ maka run
+maka run
 ```
 
 or just
 ```sh
-$ maka
+maka
 ```
 
 ### Generators
 ```sh
-$ maka g:scaffold todos
-$ maka g:template todos/todo_item [--layout] [--component] # no route
-$ maka g:api cars
-$ maka g:collection todos
-$ maka g:route webhooks/stripe				# also creates a page template
-$ maka g:route todos/show todos/:id
-$ maka g:route todos/edit todos/:id/edit
-$ maka g:publish todos
-$ maka g:stylesheet main
-$ maka g:package username:packageName. 		# Create an atmosphere package that can be published
-$ maka g:package packageName				# Create a meteor package that is local
-$ maka g:dbc connectionName --type=mssql | pgsql
+maka g:scaffold todos
+maka g:template todos/todo_item [--layout] [--component] # no route
+maka g:api cars
+maka g:collection todos
+maka g:route webhooks/stripe				# also creates a page template
+maka g:route todos/show todos/:id
+maka g:route todos/edit todos/:id/edit
+maka g:publish todos
+maka g:stylesheet main
+maka g:package username:packageName. 		# Create an atmosphere package that can be published
+maka g:package packageName				# Create a meteor package that is local
+maka g:dbc connectionName --type=mssql | pgsql
 
 Help:
-$ maka g 
+maka g 
 ```
 
 ## Options
@@ -173,60 +143,60 @@ The following parameters can be specified:
 ## Testing
 If the test option was defined, either Jasmine or Mocha will be used to run your tests.
 ```sh
-$ maka --test
+maka --test
 ```
 
 This may be used with other options such as --port:
 
 ```sh
-$ maka --test  --port 3010
+maka --test  --port 3010
 ```
 
 Testing packages in isolation has also been added:
 
 ```sh
-$ maka --test-packages package-name
+maka --test-packages package-name
 ```
 
 
 ### Run the Application with a Different Environment
 ```sh
-$ maka run --env=staging
+maka run --env=staging
 ```
 
 This will use the config files in `config/staging` instead.
 
 ### Debug Your Application on the Server Side
 ```sh
-$ maka debug
+maka debug
 ```
 
 ### Build Your Application
 ```sh
-$ maka build
+maka build
 ```
 
 ### Connect to MongoDB Database
 ```sh
-$ maka mongo
+maka mongo
 ```
 
 ### Connect to Meteor shell
 ```sh
-$ maka shell
+maka shell
 ```
 
 ## JSDoc Generated documentation 
 Use the popular JSDocs CLI to generate documentation for your meteor app. All you need is to make sure you have:
 
 ```sh
-$ npm install -g jsdoc
+npm install -g jsdoc
 ```
 
 Once you have jsdoc, simply run the following command to create a jsdoc-config.json file in your config/ directory, and output the JSDoc to <project-dir>/docs/ 
 
 ```sh
-$ maka jsdoc
+maka jsdoc
 ```
 
 ## Deployment
@@ -255,20 +225,20 @@ Maka projects require buildpacks to look for the app in /app/ in addition to the
 
 Initialize the git repo
 ```sh
-$ git init
-$ git add .
-$ git commit -m 'init'
+git init
+git add .
+git commit -m 'init'
 ```
 
 Create the heroku app:
 ```sh
-$ heroku create <app-name>
+heroku create <app-name>
 ```
 
 Setup the build pack
 
 ```sh
-$ heroku buildpacks:set https://github.com/AdmitHub/meteor-buildpack-horse.git
+heroku buildpacks:set https://github.com/AdmitHub/meteor-buildpack-horse.git
 ```
 
 This will build your application and put the resulting bundle into the project's
@@ -277,22 +247,26 @@ build folder.
 If that doesn't work, and you're getting a version issue try this build pack:
 
 ```sh
-$ heroku buildpacks:set https://github.com/AdmitHub/meteor-buildpack-horse.git#beta
+heroku buildpacks:set https://github.com/AdmitHub/meteor-buildpack-horse.git#beta
 ```
 
 
 Setup MongoDB
 ```sh
-$ heroku addons:create mongolab
+heroku addons:create mongolab
 ```
+
 Configure your ROOT_URL
 ```sh
-$ heroku config:set ROOT_URL=https://<app-name>.herokuapp.com
+heroku config:set ROOT_URL=https://<app-name>.herokuapp.com
+```
 
 or, if you have DNS setup
 
-$ heroku config:set ROOT_URL=https://www.<domain-name>.com
+```sh
+heroku config:set ROOT_URL=https://www.<domain-name>.com
 ```
+
 Depoy to heroku
 ```sh
 $ git push heroku master
@@ -300,12 +274,12 @@ $ git push heroku master
 
 Enable sticky session-support
 ```sh
-$ heroku labs:enable http-session-affinity
+heroku labs:enable http-session-affinity
 ```
 
 Set your settings path
 ```sh
-$ heroku config:add METEOR_SETTINGS="$(cat config/production/settings.json)"
+heroku config:add METEOR_SETTINGS="$(cat config/production/settings.json)"
 ```
 
 ## Deploy Meteor App on CentOS
