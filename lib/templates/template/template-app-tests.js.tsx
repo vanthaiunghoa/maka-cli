@@ -11,14 +11,16 @@ import { Meteor } from 'meteor/meteor';
 if (Meteor.isClient) {
   // this import needs to be in the Meteor.isClient conditional
   // because meteor will try to import on the server too.
-  import { $ } from 'jquery';
-  import React from 'react';
-  import ReactDOM from 'react-dom';
-  import ReactTestUtils from 'react-dom/test-utils';
-  import ShallowRenderer from 'react-test-renderer/shallow';
+  // NOTE: TypeScript doesn't support nested import statements.
+  const $ = require('jquery');
+  const React = require('react');
+  const ReactDOM = require('react-dom');
+  const ReactTestUtils = require('react-dom/test-utils');
+  const ShallowRenderer = require('react-test-renderer/shallow');
+
 
   // **** Subject under test (SUT) ****
-  import { <%= className %>Component } from './<%= fileName %>.jsx';
+  const <%= className %>Component = require('./<%= fileName %>').<%= className %>Component;
 
   /**
    * @desc

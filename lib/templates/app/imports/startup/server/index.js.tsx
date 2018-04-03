@@ -16,7 +16,7 @@ if (typeList.length > 0 && resolverList.length > 0) {
 <% if (config.engines.ssr === 'true') { %>
 /************* SSR Code ********************/
 import Routes from '../lib/routes';
-import React from 'react';
+import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { onPageLoad } from 'meteor/server-render';
 import { StaticRouter } from 'react-router-dom';
@@ -26,6 +26,7 @@ import ApolloClient from 'apollo-client';
 import { createMeteorNetworkInterface, meteorClientConfig } from 'meteor/apollo';
 import { ApolloProvider, renderToStringWithData } from 'react-apollo';
 import 'isomorphic-fetch';
+import { Meteor } from 'meteor/meteor';
 
 const networkInterface = createMeteorNetworkInterface({
   opts: { credentials: 'same-origin' },
@@ -34,7 +35,7 @@ const networkInterface = createMeteorNetworkInterface({
   batchingInterface: true,
   batchInterval: 10,
 });
-const client = new ApolloClient(meteorClientConfig({ networkInterface, ssrMode: Meteor.isServer }));<% } %>
+const client = new ApolloClient(meteorClientConfig({ networkInterface, ssrMode: true }));<% } %>
 <% if (config.engines.theme === 'material') { %>
 import { SheetsRegistry } from 'react-jss/lib/jss';
 import JssProvider from 'react-jss/lib/JssProvider';
@@ -58,15 +59,9 @@ onPageLoad(sink => {
     const sheetsRegistry = new SheetsRegistry();
 
     // Create a theme instance.
-    const theme = createMuiTheme({
-        palette: {
-            primary: grey,
-            accent: grey,
-            type: 'light',
-        },
-    });
+    const theme = createMuiTheme();
 
-    const jss = create(preset());
+    const jss = create(preset()) as any;
     jss.options.createGenerateClassName = createGenerateClassName;
     <% if (config.engines.graphql === 'apollo') { %>
     renderToStringWithData(

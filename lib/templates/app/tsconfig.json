@@ -12,10 +12,15 @@
     "experimentalDecorators": true
   },
   "include": [
-    "client/**/*"
+    "client/**/*",
+    "lib/**/*",
+    "server/**/*"
   ],
   "exclude": [
     ".meteor",
-    "node_modules"
+    "node_modules",
+    "packages",
+    "public",
+    "private"
   ]
 }

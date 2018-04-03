@@ -1,9 +1,13 @@
-<% if (client === 'react') { %>import React, { Component } from 'react';<% } else { %>
-import React from 'react';
-import { Component } from 'reflux';<% } %>
+<% if (client === 'react') { %>import * as React from 'react';<% } else { %>
+import * as React from 'react';
+import Reflux from 'reflux';<% } %>
 
-interface <%= className %>Component { state: any, props: any }
-class <%= className %>Component extends Component<<%= className %>Component> {
+interface <%= className %>Component { 
+  state: any,
+  props: any
+}<% if (client === 'reflux') { %>
+class <%= className %>Component extends Reflux.Component<<%= className %>Component> {<% } else { %>
+class <%= className %>Component extends React.Component<<%= className %>Component> {<% } %>
   static propTypes = {}
 
   static defaultProps = {}

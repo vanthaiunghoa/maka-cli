@@ -13,7 +13,7 @@ const networkInterface = createMeteorNetworkInterface({
   batchingInterface: true,
   batchInterval: 10,
 });
-const client = new ApolloClient(meteorClientConfig({ networkInterface, ssrMode: Meteor.isServer }));
+const client = new ApolloClient(meteorClientConfig({ networkInterface }));
 <% } %><% if (config.engines.theme === 'material') { %>
 // Material UI Theme config using roboto typefont and default mui.
 import 'typeface-roboto'

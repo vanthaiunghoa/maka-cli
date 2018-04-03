@@ -3,7 +3,7 @@
  * @namespace Client.Routes
  * @desc This is the main definition for the react router. Version 3.x
  */
-import React from 'react';
+import * React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import * as Component from './templates.jsx';
 

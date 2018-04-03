@@ -1,22 +1,23 @@
-<% if (client === 'react') { %>import React, { Component } from 'react';<% } else if (client === 'reflux') { %>
-import React from 'react';<% if ( isStore ) { %>
-import { Store } from 'reflux'; <% } else { %>
-import { Component } from 'reflux';<% } %><% } %><% if (features.withTracker !== 'false' && !isStore) { %>
+<% if (client === 'react') { %>import * as React from 'react';<% } else if (client === 'reflux') { %>
+import * as React from 'react';<% if ( isStore ) { %>
+import Reflux from 'reflux'; <% } else { %>
+import Reflux from 'reflux';<% } %><% } %><% if (features.withTracker !== 'false' && !isStore) { %>
 import { withTracker } from 'meteor/react-meteor-data';<% } %><% if(graphql === 'apollo' && !isStore) { %>
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag'; <% } %>
-<% if (!isStore) { %>
+<% if (!isStore && client === 'react') { %>
 interface <%= className %>Component {
-  state: any,
-  props: any
+  // Not Implemented
 }
-class <%= className %>Component extends Component<<%= className %>Component> {<% } else { %>
+class <%= className %>Component extends React.Component<<%= className %>Component> {<% } else if (!isStore && client === 'reflux') { %>
 interface <%= className %>Component {
-  state: any,
-  props: any,
-  store: any
+  // Not implemented
 }
-class <%= className %>Component extends Store<<%= className %>Component> { <% } %><% if (client === 'reflux' && isStore) { %>
+class <%= className %>Component extends Reflux.Component<<%= className %>Component> {<% } else { %>
+interface <%= className %>Component {
+  // Not implemented
+}
+class <%= className %>Component extends Reflux.Store<<%= className %>Component> {<% } %><% if (client === 'reflux' && isStore) { %>
   constructor() {
     super();
     this.state = {};

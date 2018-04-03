@@ -7,6 +7,26 @@
  * These are the common (for client and server) modules and interfaces that can't be automatically generated from the Meteor data.js file
  */
 
+// Needed for testing.
+declare var require: Function;
+declare var beforeEach: Function;
+declare var afterEach: Function;
+declare var it: Function;
+declare var describe: Function;
+declare var assert: any;
+declare var equal: any;
+declare var Map: any;
+
+// TODO: These should be worked out ...
+declare module 'meteor/react-meteor-data': any;
+declare module 'meteor/maka:rest': any;
+declare module 'meteor/mdg:validated-method': any;
+declare module 'meteor/apollo': any;
+declare module 'meteor/server-render': any;
+declare module 'meteor/underscore': any;
+declare module 'meteor/ddp-rate-limiter';
+declare module 'meteor/check': any;
+
 interface EJSONable {
   [key: string]: number | string | boolean | Object | number[] | string[] | Object[] | Date | Uint8Array | EJSON.CustomType;
 }
@@ -34,6 +54,10 @@ declare module "meteor/match" {
 
 declare module "meteor/meteor" {
   export module Meteor {
+    export var isDevelopment: any;
+    export var isServer: any;
+    export var isClient: any;
+    
     interface UserEmail {
       address: string;
       verified: boolean;
@@ -630,16 +654,16 @@ declare module "meteor/mongo" {
         idGeneration?: string;
         transform?: Function;
       }): Collection<T>;
-      deny(options: {
+    }
+    interface Collection<T> {
+      allow(options: {
         insert?: (userId: string, doc: T) => boolean;
         update?: (userId: string, doc: T, fieldNames: string[], modifier: any) => boolean;
         remove?: (userId: string, doc: T) => boolean;
         fetch?: string[];
         transform?: Function;
       }): boolean;
-    }
-    interface Collection<T> {
-      allow(options: {
+      deny(options: {
         insert?: (userId: string, doc: T) => boolean;
         update?: (userId: string, doc: T, fieldNames: string[], modifier: any) => boolean;
         remove?: (userId: string, doc: T) => boolean;

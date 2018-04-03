@@ -1,11 +1,13 @@
 /** @namespace Client */
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 <% if (config.engines.graphql === 'apollo') {  %>
 // Apollo Client configuration using vanilla meteor settings.
 import ApolloClient from 'apollo-client';
 import { createMeteorNetworkInterface, meteorClientConfig } from 'meteor/apollo';
 import { ApolloProvider } from 'react-apollo';
+import { Meteor } from 'meteor/meteor';
+
 const networkInterface = createMeteorNetworkInterface({
   opts: { credentials: 'same-origin' },
   uri: Meteor.absoluteUrl('graphql'),
@@ -13,7 +15,7 @@ const networkInterface = createMeteorNetworkInterface({
   batchingInterface: true,
   batchInterval: 10,
 });
-const client = new ApolloClient(meteorClientConfig({ networkInterface, ssrMode: Meteor.isServer }));
+const client = new ApolloClient(meteorClientConfig({ networkInterface }));
 <% } %><% if (config.engines.theme === 'material') { %>
 // Material UI Theme config using roboto typefont and default mui.
 import 'typeface-roboto'

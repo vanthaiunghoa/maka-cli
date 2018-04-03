@@ -1,6 +1,6 @@
 /* eslint-env jasmine */
 import { Meteor } from 'meteor/meteor';
-import <%= name %> from './<%= fileName %>-collection.tsx';
+import <%= name %> from './<%= fileName %>-collection';
 
 if (Meteor.isServer) {
   describe('<%= name %>', () => {

@@ -4,7 +4,6 @@ import { check } from 'meteor/check';
 interface <%=name%>Collection {
   publicFields: any,
   privateFields: any,
-  deny: any,
   schema: any
 }
 /**
