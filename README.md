@@ -121,7 +121,7 @@ maka g:publish todos
 maka g:stylesheet main
 maka g:package username:packageName. 		# Create an atmosphere package that can be published
 maka g:package packageName				# Create a meteor package that is local
-maka g:dbc connectionName --type=mssql | pgsql
+maka g:dbc connectionName --type=mssql | pgsql | sqlite
 
 Help:
 maka g 
