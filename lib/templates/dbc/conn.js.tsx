@@ -1,5 +1,5 @@
 <% if (type === 'pgsql') { %>
-import pg from 'pg';
+import * as pg from 'pg';
 import pgLocalConfig from './config';
 
 const config = {
@@ -24,7 +24,7 @@ const <%= camelCase %>PgPool = new pg.Pool(config, err => {
 
 export default <%= camelCase %>PgPool;
 <% } else if (type === 'mssql') { %>
-import sql from 'mssql';
+import * as sql from 'mssql';
 import msLocalConfig from './config';
 
 const config = {
@@ -60,7 +60,7 @@ export default <%= camelCase %>MsPool;
 <% } else if (type === 'mongo') { %>
 
 <% } else if (type === 'sqlite') { %>
-import Database from 'better-sqlite3';
+import * as Database from 'better-sqlite3';
 import liteLocalConfig from './config';
 const config = {
   memory: process.env.SQLLITEINMEM || liteLocalConfig.memory,

@@ -22,9 +22,9 @@ class <%= className %>Component extends Reflux.Store<<%= className %>Component> 
     super();
     this.state = {};
   }<% } else { %>
-  static propTypes = {}
+  static propTypes = {};
 
-  static defaultProps = {}
+  static defaultProps = {};
 
   constructor(props) {
     super(props);

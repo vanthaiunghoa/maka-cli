@@ -12,9 +12,9 @@ class <%= className %>Component extends Store { <% } %><% if (client === 'reflux
     super();
     this.state = {};
   }<% } else { %>
-  static propTypes = {}
+  static propTypes = {};
 
-  static defaultProps = {}
+  static defaultProps = {};
 
   constructor(props) {
     super(props);
