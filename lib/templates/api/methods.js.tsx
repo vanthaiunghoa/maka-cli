@@ -11,8 +11,6 @@ import <%= name %> from './<%= fileName %>-collection';
  * and as such is used here to validate that method
  * calls from the client are properly handled.
  *
- * All methods are disabled by default
- * Uncomment the return of each methods to enable
  */
 
 /**
